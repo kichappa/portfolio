@@ -115,7 +115,6 @@ function App() {
         viewport: [841.89, 595.28],
     };
     const [colourPoints, setColourPoints] = useState(getColourPoints(rawCP));
-    // console.log(colourPoints);
     return (
         <div className="App">
             <Canvas id={'gradientPalette'} canvasPoints={colourPoints} />

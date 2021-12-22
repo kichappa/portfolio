@@ -51,7 +51,22 @@
     align-content: center;
 }
 
-.pfChild {
-    z-index: inherit;
-    width: 40vw;
+@media (min-aspect-ratio: 6/10) {
+    #portfolios {
+        flex-direction: row;
+    }
+    .pfChild {
+        z-index: inherit;
+        width: 40vw;
+    }
+}
+
+@media (max-aspect-ratio: 6/10) {
+    #portfolios {
+        flex-direction: column;
+    }
+    .pfChild {
+        z-index: inherit;
+        width: 80vw;
+    }
 }
