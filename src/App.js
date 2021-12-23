@@ -6,7 +6,27 @@ import Portfolio from './components/Portfolio';
 import Canvas from './components/Canvas';
 import bgShapes1 from './static/Back Shapes_bg.svg';
 import bgShapes2 from './static/Back Shapes_bg_2.svg';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
+function useInterval(callback, delay) {
+    const savedCallback = useRef();
+
+    // Remember the latest callback.
+    useEffect(() => {
+        savedCallback.current = callback;
+    }, [callback]);
+
+    // Set up the interval.
+    useEffect(() => {
+        function tick() {
+            savedCallback.current();
+        }
+        if (delay !== null) {
+            let id = setInterval(tick, delay);
+            return () => clearInterval(id);
+        }
+    }, [delay]);
+}
 
 function App() {
     const rgbToHslHsvHex = (rgb) => {
@@ -97,11 +117,20 @@ function App() {
             'DEECE5',
             'C7DEE5',
             'E3EEFD',
-            'FFFFFF',
-            'FFFFFF',
+            'ffffff',
+            'ffffff',
             'E7F5EE',
             'DEECE5',
         ],
+        // colours: [
+        //     '000000',
+        //     'FF0000',
+        //     '00FF00',
+        //     '0000FF',
+        //     'FFFF00',
+        //     '00FFFF',
+        //     'FF00FF',
+        // ],
         radii: [1, 2, 1, 1, 1, 1, 1],
         positions: [
             [120.8854, 78.9364],
@@ -115,6 +144,83 @@ function App() {
         viewport: [841.89, 595.28],
     };
     const [colourPoints, setColourPoints] = useState(getColourPoints(rawCP));
+    const [oCP, setOCP] = useState(JSON.parse(JSON.stringify(colourPoints)));
+    const [startPerturbation, setStartPerturbation] = useState(false);
+    const printColour = (p) => {
+        console.log([p.x, p.y]);
+    };
+    const perturbPos = (first = false) => {
+        let cP = JSON.parse(JSON.stringify(colourPoints));
+        // console.log(
+        //     Math.max(Math.min(oCP[0].x + (Math.random() * 2 - 1) * 1, 1))
+        // );
+        if (first) {
+            for (let i in oCP) {
+                oCP[i].x = Math.max(
+                    Math.min(oCP[i].x + ((Math.random() * 2 - 1) / 2) * 0.5, 1),
+                    0
+                );
+                oCP[i].y = Math.max(
+                    Math.min(oCP[i].y + ((Math.random() * 2 - 1) / 2) * 0.5, 1),
+                    0
+                );
+                setOCP([...oCP]);
+                // // console.log([cP[i].x, cP[i].y]);
+                // cP[i].x = cP[i].x + (Math.random() * 2 - 1) * 0.1;
+                // cP[i].y = cP[i].y + (Math.random() * 2 - 1) * 0.1;
+                // console.log([cP[i].x, cP[i].y]);
+            }
+        } else if (startPerturbation) {
+            for (let i in oCP) {
+                // console.log([cP[i].x, cP[i].y]);
+                if (
+                    oCP[i].x - cP[i].x < 0.0001 ||
+                    oCP[i].y - cP[i].y < 0.0001
+                ) {
+                    oCP[i].x = Math.max(
+                        Math.min(
+                            oCP[i].x + ((Math.random() * 2 - 1) / 2) * 0.5,
+                            1
+                        ),
+                        0
+                    );
+                    oCP[i].y = Math.max(
+                        Math.min(
+                            oCP[i].y + ((Math.random() * 2 - 1) / 2) * 0.5,
+                            1
+                        ),
+                        0
+                    );
+                    setOCP([...oCP]);
+                }
+                cP[i].x = Math.max(
+                    Math.min(
+                        cP[i].x + 0.005 * Math.random() * (oCP[i].x - cP[i].x),
+                        1
+                    ),
+                    0
+                );
+                cP[i].y = Math.max(
+                    Math.min(
+                        cP[i].y + 0.005 * Math.random() * (oCP[i].y - cP[i].y),
+                        1
+                    ),
+                    0
+                );
+                // console.log(0.05 * Math.random() * (oCP[i].y - cP[i].y));
+                // console.log([cP[i].x, cP[i].y]);
+            }
+        }
+        setColourPoints(cP);
+    };
+
+    useInterval(perturbPos, 17);
+
+    useEffect(() => {
+        perturbPos(true);
+        setStartPerturbation(true);
+    }, []);
+
     return (
         <div className="App">
             <Canvas id={'gradientPalette'} canvasPoints={colourPoints} />

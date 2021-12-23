@@ -16,7 +16,7 @@
     /* height: fit-content; */
     position: relative;
     overflow: visible;
-    opacity: 30%;
+    /* opacity: 30%; */
     mix-blend-mode: color-burn;
 }
 
@@ -34,23 +34,25 @@
 }
 @keyframes bgShapesSpin {
     0% {
-        transform: translate(0, 0) rotate(0deg);
+        transform: translate(10vw, -10vh) rotate(0deg);
     }
     50% {
         transform: translate(-10vw, 10vh) rotate(180deg);
     }
     100% {
-        transform: translate(0, 0) rotate(360deg);
+        transform: translate(10vw, -10vh) rotate(360deg);
     }
 }
 
 @media (min-aspect-ratio: 6/10) {
     #bg_Container_1 {
-        bottom: -50vmin;
-        left: min(-40vw, -50vh);
+        opacity: 60%;
+        bottom: -50vh;
+        left: min(-40vw, -40vh);
     }
 
     #bg_Container_2 {
+        opacity: 30%;
         top: -90vmin;
         right: min(-20vw, -30vh);
     }
@@ -74,11 +76,12 @@
 
 @media (max-aspect-ratio: 6/10) {
     #bg_Container_1 {
+        opacity: 60%;
         bottom: -50vh;
         left: min(-50vw, -10vh);
     }
-
     #bg_Container_2 {
+        opacity: 50%;
         top: -20vh;
         right: min(-50vw, -10vh);
     }

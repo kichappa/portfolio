@@ -4,8 +4,11 @@ import renderGradient from '../js/gradientRenderer';
 var worker = new window.Worker('./gradientWorker.js');
 
 const Canvas = ({ id, canvasPoints }) => {
-    const [points, setPoints] = useState(canvasPoints);
-    const [oPoints] = useState(JSON.parse(JSON.stringify(canvasPoints)));
+    const [unscaledPoints, setUnscaledPoints] = useState(
+        JSON.parse(JSON.stringify(canvasPoints))
+    );
+    const [points, setPoints] = useState([]);
+    // const [oPoints] = useState(JSON.parse(JSON.stringify(canvasPoints)));
     const [canvas] = useState(useRef(null));
     const [cSize, setCSize] = useState([]);
     const [windowSize, setWindowSize] = useState({
@@ -13,33 +16,30 @@ const Canvas = ({ id, canvasPoints }) => {
         height: undefined,
     });
     const [firstRender, setFirstRender] = useState(true);
+
     const draw = (imageData) => {
         var ctx = canvas.current.getContext('2d');
         ctx.putImageData(imageData, 0, 0);
         window.requestAnimationFrame(() => draw(imageData));
     };
-    const scaleCP = () => {
-        // console.log('scaling to size');
+
+    const scaleCP = (Points = unscaledPoints, set = true) => {
+        // console.log('scaling to size', Points, set);
+        let PointsCopy = JSON.parse(JSON.stringify(Points));
         if (canvas.current.width != canvas.current.clientWidth) {
             canvas.current.width = canvas.current.clientWidth;
         }
         if (canvas.current.height != canvas.current.clientHeight) {
             canvas.current.height = canvas.current.clientHeight;
         }
-        // console.log(
-        //     '[',
-        //     canvas.current.clientWidth,
-        //     ', ',
-        //     canvas.current.clientHeight,
-        //     ']'
-        // );
-        for (let i in points) {
-            points[i].x = oPoints[i].x * canvas.current.width;
-            points[i].y = oPoints[i].y * canvas.current.height;
+        for (let i in Points) {
+            PointsCopy[i].x = Points[i].x * canvas.current.width;
+            PointsCopy[i].y = Points[i].y * canvas.current.height;
         }
-        setPoints([...points]);
+        if (set) setPoints([...PointsCopy]);
+        return Points;
     };
-    const shootPixel = () => {
+    const shootPixel = (Points = points) => {
         if (!canvas.current.getContext('webgl2')) {
             console.log('WebGL2 not available, using CPU.');
             var ctx = canvas.current.getContext('2d');
@@ -53,7 +53,7 @@ const Canvas = ({ id, canvasPoints }) => {
             worker = new window.Worker('./gradientWorker.js');
             worker.postMessage({
                 imageData: imageData,
-                points: points,
+                points: Points,
                 canvas: {
                     width: canvas.current.width,
                     height: canvas.current.height,
@@ -69,15 +69,18 @@ const Canvas = ({ id, canvasPoints }) => {
             };
         } else {
             window.requestAnimationFrame(() =>
-                renderGradient(points, canvas.current)
+                renderGradient(Points, canvas.current)
             );
         }
     };
     useEffect(() => {
         // setPoints(canvasPoints);
-        scaleCP();
+        // if (JSON.stringify(canvasPoints) !== JSON.stringify(points)) {
+        //     console.log('Rendering new points');
+        // }
+        scaleCP(canvasPoints);
         shootPixel();
-    }, points);
+    }, [canvasPoints]);
 
     useEffect(() => {
         // console.log('inside useEffect');
@@ -86,7 +89,7 @@ const Canvas = ({ id, canvasPoints }) => {
                 canvas.current.clientWidth !== cSize[0] ||
                 canvas.current.clientHeight !== cSize[1]
             ) {
-                scaleCP();
+                scaleCP(unscaledPoints);
                 shootPixel();
             }
         }
@@ -99,19 +102,16 @@ const Canvas = ({ id, canvasPoints }) => {
                 'WebGL not available in this browser/platform. Renders may be slower.'
             );
         }
-        setPoints(canvasPoints);
         setCSize([canvas.current.clientWidth, canvas.current.clientHeight]);
-        // Handler to call on window resize
+        scaleCP(unscaledPoints);
+        shootPixel();
         function handleResize() {
-            // Set window width/height to state
             setWindowSize({
                 width: window.innerWidth,
                 height: window.innerHeight,
             });
         }
-        // Add event listener
         window.addEventListener('resize', handleResize);
-        // handleResize();
     }, []);
     return <canvas id={id} ref={canvas} />;
 };
