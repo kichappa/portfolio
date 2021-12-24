@@ -131,7 +131,7 @@ function App() {
         //     '00FFFF',
         //     'FF00FF',
         // ],
-        radii: [1, 2, 1, 1, 1, 1, 1],
+        radii: [1.3, 1.9, 1.53, 1.01, 1.81, 0.6, 1.11],
         positions: [
             [120.8854, 78.9364],
             [382.0792, 303.7385],
@@ -173,26 +173,20 @@ function App() {
         } else if (startPerturbation) {
             for (let i in oCP) {
                 // console.log([cP[i].x, cP[i].y]);
-                if (
-                    oCP[i].x - cP[i].x < 0.0001 ||
-                    oCP[i].y - cP[i].y < 0.0001
-                ) {
-                    oCP[i].x = Math.max(
-                        Math.min(
-                            oCP[i].x + ((Math.random() * 2 - 1) / 2) * 0.5,
-                            1
-                        ),
-                        0
-                    );
-                    oCP[i].y = Math.max(
-                        Math.min(
-                            oCP[i].y + ((Math.random() * 2 - 1) / 2) * 0.5,
-                            1
-                        ),
-                        0
-                    );
-                    setOCP([...oCP]);
-                }
+                // if (
+                //     oCP[i].x - cP[i].x < 0.0001 ||
+                //     oCP[i].y - cP[i].y < 0.0001
+                // ) {
+                oCP[i].x =
+                    (((oCP[i].x + ((Math.random() * 2 - 1) / 2) * 0.05) % 1) +
+                        1) %
+                    1;
+                oCP[i].y =
+                    (((oCP[i].y + ((Math.random() * 2 - 1) / 2) * 0.05) % 1) +
+                        1) %
+                    1;
+                setOCP([...oCP]);
+                // }
                 cP[i].x = Math.max(
                     Math.min(
                         cP[i].x + 0.005 * Math.random() * (oCP[i].x - cP[i].x),
@@ -214,7 +208,7 @@ function App() {
         setColourPoints(cP);
     };
 
-    useInterval(perturbPos, 17);
+    useInterval(perturbPos, 1);
 
     useEffect(() => {
         perturbPos(true);
