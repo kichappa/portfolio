@@ -40,9 +40,17 @@
     overflow-y: hidden;
 } */
 
+#pfs_container {
+    z-index: 5;
+    height: 90vh;
+    width: 100%;
+    position: absolute;
+    top: 50vh;
+    transform: translateY(-50%);
+}
 #portfolios {
-    z-index: 3;
-    height: 100vh;
+    z-index: inherit;
+    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;

@@ -247,17 +247,19 @@ function App() {
                 alt="spiral logo"
             />
             <p id="myname">Kishore S. Shenoy</p>
-            <div id="portfolios">
-                <Portfolio
-                    title="UX Portfolio"
-                    link="https://kichappa.github.io/resume/ux.htm"
-                    desc="Here are the works I did in User Experience Design. These include wireframes and prototypes made for my intern at HeyPrescribe!, coursework and hobby."
-                />
-                <Portfolio
-                    title="Design Portfolio"
-                    link="https://kichappa.github.io/resume/design.htm"
-                    desc="This is my general design portfolio. These are works done primarily for coursework or hobby."
-                />
+            <div id="pfs_container">
+                <div id="portfolios">
+                    <Portfolio
+                        title="UX Portfolio"
+                        link="https://kichappa.github.io/resume/ux.htm"
+                        desc="Here are the works I did in User Experience Design. These include wireframes and prototypes made for my intern at HeyPrescribe!, coursework and hobby."
+                    />
+                    <Portfolio
+                        title="Design Portfolio"
+                        link="https://kichappa.github.io/resume/design.htm"
+                        desc="This is my general design portfolio. These are works done primarily for coursework or hobby."
+                    />
+                </div>
             </div>
             <object
                 data={mvl}
