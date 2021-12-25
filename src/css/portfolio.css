@@ -23,6 +23,58 @@
     font-weight: 500;
     src: url('../fonts/SF-Pro-Display-Medium.otf');
 }
+
+#pfs_container {
+    z-index: 5;
+    height: 90vh;
+    --webkit-h: -webkit-fill-available;
+    --moz-h: -moz-available;
+    height: calc(0.9 * var(--webkit-h));
+    min-height: calc(0.9 * var(--moz-h));
+    width: 100%;
+    position: absolute;
+    top: 50vh;
+    /* transform: translateY(calc(-50% + (100vh - var(--webkit-h)) / 2)); */
+    transform: translateY(-50%);
+}
+#portfolios {
+    z-index: inherit;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    align-content: center;
+    -webkit-align-items: flex-start;
+    -webkit-flex-wrap: wrap;
+    -webkit-align-content: center;
+}
+@media (min-aspect-ratio: 6/10) {
+    #portfolios {
+        flex-direction: row;
+        justify-content: space-evenly;
+        -webkit-flex-direction: row;
+        -webkit-justify-content: space-evenly;
+    }
+    .pfChild {
+        z-index: inherit;
+        width: 40vw;
+    }
+}
+
+@media (max-aspect-ratio: 6/10) {
+    #portfolios {
+        flex-direction: column;
+        justify-content: center;
+        -webkit-flex-direction: column;
+        -webkit-justify-content: center;
+    }
+    .pfChild {
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+        z-index: inherit;
+        width: 80vw;
+    }
+}
 .pfChild button {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -41,7 +93,6 @@
     border: none;
     transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-
 .pfChild button:active {
     background: linear-gradient(
             144.7deg,
@@ -58,14 +109,12 @@
         inset 3px 3px 15px rgba(106, 149, 213, 0.18),
         inset -3px -3px 6px rgba(232, 241, 252, 0.61);
 }
-
 .pfTitle {
     font-family: 'San Francisco Display';
     font-weight: 800;
     font-size: 3vh;
     margin-bottom: 1vh;
 }
-
 .pfContent {
     margin-top: 2vh;
     margin-bottom: 3vh;
