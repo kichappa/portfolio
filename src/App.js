@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './css/App.css';
 import './css/portfolio.css';
 import './css/bg.css';
@@ -6,6 +6,8 @@ import Portfolio from './components/Portfolio';
 import Canvas from './components/Canvas';
 import bgShapes1 from './static/Back Shapes_bg.svg';
 import bgShapes2 from './static/Back Shapes_bg_2.svg';
+import mvl from './static/madewithlove.svg';
+import logo from './static/logo.svg';
 import { useState, useEffect, useRef } from 'react';
 
 function useInterval(callback, delay) {
@@ -238,6 +240,13 @@ function App() {
                     />
                 </div>
             </div>
+            <object
+                data={logo}
+                id="logo"
+                type="image/svg+xml"
+                alt="spiral logo"
+            />
+            <p id="myname">Kishore S. Shenoy</p>
             <div id="portfolios">
                 <Portfolio
                     title="UX Portfolio"
@@ -250,6 +259,12 @@ function App() {
                     desc="This is my general design portfolio. These are works done primarily for coursework or hobby."
                 />
             </div>
+            <object
+                data={mvl}
+                id="mvl"
+                type="image/svg+xml"
+                alt="made with love"
+            />
         </div>
     );
 }
