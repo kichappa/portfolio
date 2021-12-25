@@ -59,7 +59,7 @@
 #mvl {
     position: absolute;
     bottom: 1vh;
-    max-width: 20vw;
+    /* max-width: 20vw; */
     max-height: 3vh;
     z-index: 2;
     transform: translate(-50%, 0);
