@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.ece55404.css",
+    "main.css": "/portfolio/static/css/main.d56308ba.css",
     "main.js": "/portfolio/static/js/main.95e13ab3.js",
     "static/js/787.395fa40f.chunk.js": "/portfolio/static/js/787.395fa40f.chunk.js",
     "static/media/SF-Pro-Display-Semibold.otf": "/portfolio/static/media/SF-Pro-Display-Semibold.69c013a9ccdf71f8fb02.otf",
@@ -13,12 +13,12 @@
     "index.html": "/portfolio/index.html",
     "static/media/logo.svg": "/portfolio/static/media/logo.3b328d0485f224e0a88e7122f2e894ee.svg",
     "static/media/Back Shapes_bg_2.svg": "/portfolio/static/media/Back Shapes_bg_2.0a161450e0efcbe1b407b7637c767025.svg",
-    "main.ece55404.css.map": "/portfolio/static/css/main.ece55404.css.map",
+    "main.d56308ba.css.map": "/portfolio/static/css/main.d56308ba.css.map",
     "main.95e13ab3.js.map": "/portfolio/static/js/main.95e13ab3.js.map",
     "787.395fa40f.chunk.js.map": "/portfolio/static/js/787.395fa40f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ece55404.css",
+    "static/css/main.d56308ba.css",
     "static/js/main.95e13ab3.js"
   ]
 }
