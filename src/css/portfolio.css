@@ -91,7 +91,14 @@
     background: linear-gradient(87.66deg, #e0e7f06c 3.93%, #d2d9e36c 96.07%);
     background-blend-mode: color-burn;
     border: none;
-    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all 0.1s ease-in-out;
+}
+.pfChild button:hover {
+    box-shadow: -6px -6px 10px #f7fafdbe, 6px 6px 8px rgba(43, 58, 103, 0.21),
+        inset -2px -2px 5px rgba(95, 98, 107, 0.171),
+        inset 3px 3px 6px rgba(255, 255, 255, 0.493);
+    background: linear-gradient(87.66deg, #ecf0f791 3.93%, #e8eef585 96.07%);
+    transition: all 0.1s ease-in-out;
 }
 .pfChild button:active {
     background: linear-gradient(
