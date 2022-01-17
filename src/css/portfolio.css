@@ -47,7 +47,7 @@
     -webkit-align-content: center;
 }
 #pf_con_con {
-    height: 87vh;
+    height: calc(87 * var(--vh, 1vh));
     width: 100vw;
     position: fixed;
     overflow-y: auto;
