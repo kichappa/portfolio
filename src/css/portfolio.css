@@ -33,9 +33,7 @@
     min-height: calc(0.9 * var(--moz-h));
     width: 100%;
     position: absolute;
-    top: 50vh;
     /* transform: translateY(calc(-50% + (100vh - var(--webkit-h)) / 2)); */
-    transform: translateY(-50%);
 }
 #portfolios {
     z-index: inherit;
@@ -48,7 +46,22 @@
     -webkit-flex-wrap: wrap;
     -webkit-align-content: center;
 }
+#pf_con_con {
+    height: 87vh;
+    width: 100vw;
+    position: fixed;
+    overflow-y: auto;
+    top: 7vh;
+}
+.pfChild {
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
+}
 @media (min-aspect-ratio: 6/10) {
+    #pfs_container {
+        transform: translateY(-50%);
+        top: 50vh;
+    }
     #portfolios {
         flex-direction: row;
         justify-content: space-evenly;
@@ -69,8 +82,6 @@
         -webkit-justify-content: center;
     }
     .pfChild {
-        padding-top: 5vh;
-        padding-bottom: 5vh;
         z-index: inherit;
         width: 80vw;
     }
@@ -121,6 +132,7 @@
     font-weight: 800;
     font-size: 3vh;
     margin-bottom: 1vh;
+    margin-top: 1.5vh;
 }
 .pfContent {
     margin-top: 2vh;

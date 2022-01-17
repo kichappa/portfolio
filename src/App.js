@@ -219,59 +219,63 @@ function App() {
 
     return (
         <div className="App">
-            <Canvas id={'gradientPalette'} canvasPoints={colourPoints} />
-            <div className="bg_c_c">
-                <div id="bg_Container_1" className="bg_Container">
-                    <object
-                        data={bgShapes1}
-                        id="bgShapes_1"
-                        type="image/svg+xml"
-                        alt="bg image"
-                    />
+            <div class="backgrounds">
+                <Canvas id={'gradientPalette'} canvasPoints={colourPoints} />
+                <div className="bg_c_c">
+                    <div id="bg_Container_1" className="bg_Container">
+                        <object
+                            data={bgShapes1}
+                            id="bgShapes_1"
+                            type="image/svg+xml"
+                            alt="bg image"
+                        />
+                    </div>
+                </div>
+                <div className="bg_c_c">
+                    <div id="bg_Container_2" className="bg_Container">
+                        <object
+                            data={bgShapes2}
+                            id="bgShapes_2"
+                            type="image/svg+xml"
+                            alt="another bg image"
+                        />
+                    </div>
+                </div>
+                <object
+                    data={logo}
+                    id="logo"
+                    type="image/svg+xml"
+                    alt="spiral logo"
+                />
+                <p id="myname">Kishore S. Shenoy</p>
+                <object
+                    data={mvl}
+                    id="mvl"
+                    type="image/svg+xml"
+                    alt="made with love"
+                />
+            </div>
+            <div id="pf_con_con">
+                <div id="pfs_container">
+                    <div id="portfolios">
+                        <Portfolio
+                            title="Design Portfolio"
+                            link="https://kichappa.github.io/resume/design.htm"
+                            desc="This is my general design portfolio. These are works done primarily for coursework or hobby."
+                        />
+                        <Portfolio
+                            title="Engineering Portfolio"
+                            link="https://kichappa.github.io/resume/eng.htm"
+                            desc="This is my engineering. These are works done primarily for senior thesis and coursework."
+                        />
+                        <Portfolio
+                            title="UX Portfolio"
+                            link="https://kichappa.github.io/resume/ux.htm"
+                            desc="Here are the works I did in User Experience Design. These include wireframes and prototypes made for my intern at HeyPrescribe!, coursework and hobby."
+                        />
+                    </div>
                 </div>
             </div>
-            <div className="bg_c_c">
-                <div id="bg_Container_2" className="bg_Container">
-                    <object
-                        data={bgShapes2}
-                        id="bgShapes_2"
-                        type="image/svg+xml"
-                        alt="another bg image"
-                    />
-                </div>
-            </div>
-            <object
-                data={logo}
-                id="logo"
-                type="image/svg+xml"
-                alt="spiral logo"
-            />
-            <p id="myname">Kishore S. Shenoy</p>
-            <div id="pfs_container">
-                <div id="portfolios">
-                    <Portfolio
-                        title="Design Portfolio"
-                        link="https://kichappa.github.io/resume/design.htm"
-                        desc="This is my general design portfolio. These are works done primarily for coursework or hobby."
-                    />
-                    <Portfolio
-                        title="Engineering Portfolio"
-                        link="https://kichappa.github.io/resume/eng.htm"
-                        desc="This is my engineering. These are works done primarily for senior thesis and coursework."
-                    />
-                    <Portfolio
-                        title="UX Portfolio"
-                        link="https://kichappa.github.io/resume/ux.htm"
-                        desc="Here are the works I did in User Experience Design. These include wireframes and prototypes made for my intern at HeyPrescribe!, coursework and hobby."
-                    />
-                </div>
-            </div>
-            <object
-                data={mvl}
-                id="mvl"
-                type="image/svg+xml"
-                alt="made with love"
-            />
         </div>
     );
 }

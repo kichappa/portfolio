@@ -110,6 +110,12 @@
     }
 }
 
+.backgrounds {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
 @media (max-aspect-ratio: 6/10) {
     #bg_Container_1 {
         opacity: 60%;
