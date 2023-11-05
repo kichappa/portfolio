@@ -1,3 +1,3 @@
 # portfolio
 
-My portfolio will come up here!
+My portfolio is up [here](https://kichappa.github.io/portfolio/)! You can also check out my website [here](kichappa.github.io).
